@@ -1,0 +1,477 @@
+// Crear etiquetas para los nodos
+CREATE CONSTRAINT FOR (s:Sucursal) REQUIRE s.clave IS UNIQUE;
+CREATE CONSTRAINT FOR (e:Empleado) REQUIRE e.ID IS UNIQUE;
+CREATE CONSTRAINT FOR (p:Proyecto) REQUIRE p.codigo IS UNIQUE;
+CREATE CONSTRAINT FOR (c:Cliente) REQUIRE c.nombre IS UNIQUE;
+CREATE CONSTRAINT FOR (r:Reunion) REQUIRE r.idRe IS UNIQUE;
+CREATE CONSTRAINT FOR (v:Visita) REQUIRE v.idVi IS UNIQUE;
+
+// Crear sucursales
+CREATE (s1:Sucursal {clave: "S001", nombre: "Bogotá", direccion: "Calle 123", ciudad: "Bogotá", capacidad: 100});
+CREATE (s2:Sucursal {clave: "S002", nombre: "Medellín", direccion: "Carrera 7", ciudad: "Medellín", capacidad: 80});
+CREATE (s3:Sucursal {clave: "S003", nombre: "Cali", direccion: "Avenida Colombia", ciudad: "Cali", capacidad: 90});
+CREATE (s4:Sucursal {clave: "S004", nombre: "Barranquilla", direccion: "Calle 30", ciudad: "Barranquilla", capacidad: 70});
+CREATE (s5:Sucursal {clave: "S005", nombre: "Cartagena", direccion: "Calle del Mar", ciudad: "Cartagena", capacidad: 60});
+
+// Crear empleados (asignados a sucursales)
+// Empleados de s1
+CREATE (e1:Empleado {ID: "EMP011", nombre: "Juan", apellido: "Pérez", curp: "MAJCHC980215HMX09", teléfono: "3111234567", numCuenta: "1234567890123456", tipo: "gerente", area: "Ventas"});
+CREATE (e2:Empleado {ID: "EMP012", nombre: "Alberto", apellido: "Lopez", curp: "LOPEGFM9503259JC", teléfono: "3115573821", numCuenta: "9876543210987654", tipo: "desarrollador", especializacion: "front-end", lenguajePrin: "JavaScript", proyectosActivos: "3"});
+CREATE (e3:Empleado {ID: "EMP013", nombre: "Fernanda", apellido: "Delgado", curp: "RAMLAR971108HMX12", teléfono: "3111122756", numCuenta: "4567891234567890", tipo: "soporte", tipo: "Infraestructura", contactInt: "4412"});
+CREATE (e4:Empleado {ID: "EMP014", nombre: "Sofia", apellido: "Gonzalez", curp: "GOGSVV050812FMX15", teléfono: "3113654817", numCuenta: "1357913579135791", tipo: "gerente", area: "Desarrollo"});
+CREATE (e5:Empleado {ID: "EMP015", nombre: "Daniel", apellido: "Aguilar", curp: "AGAUED030510HMX18", teléfono: "3111029458", numCuenta: "2468024680246802", tipo: "desarrollador", especializacion: "back-end", lenguajePrin: "Python", proyectosActivos: "4"});
+//RELACIONANDO LOS EMPLEADOS A LA S1
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e1:Empleado {ID: "EMP011"})
+CREATE (e1)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e2:Empleado {ID: "EMP012"})
+CREATE (e2)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e3:Empleado {ID: "EMP013"})
+CREATE (e3)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e4:Empleado {ID: "EMP014"})
+CREATE (e4)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e5:Empleado {ID: "EMP015"})
+CREATE (e5)-[:trabajaEn]->(s);
+
+
+// Empleados de s2
+CREATE (e6:Empleado {ID: "EMP021", nombre: "Carlos", apellido: "Ramírez", curp: "RAMCAR870315HMX23", teléfono: "3121234568", numCuenta: "1234987654321234", tipo: "gerente", area: "Logística"});
+CREATE (e7:Empleado {ID: "EMP022", nombre: "Elena", apellido: "Martínez", curp: "MARLEE930212HMX45", teléfono: "3121123456", numCuenta: "7890654321896543", tipo: "desarrollador", especializacion: "full-stack", lenguajePrin: "JavaScript", proyectosActivos: "5"});
+CREATE (e8:Empleado {ID: "EMP023", nombre: "Gabriel", apellido: "Hernández", curp: "HERGAB910910HMX34", teléfono: "3123345567", numCuenta: "4561237896543210", tipo: "soporte", area: "Redes", contactInt: "5512"});
+CREATE (e9:Empleado {ID: "EMP024", nombre: "Marta", apellido: "Díaz", curp: "DIAMRT940722FMX98", teléfono: "3125566789", numCuenta: "7891234567891234", tipo: "gerente", area: "Finanzas"});
+CREATE (e10:Empleado {ID: "EMP025", nombre: "Luis", apellido: "Ortiz", curp: "ORTLIS860405HMX22", teléfono: "3128901234", numCuenta: "1357913579135792", tipo: "desarrollador", especializacion: "back-end", lenguajePrin: "Java", proyectosActivos: "2"});
+//Relacionando empleados a s2
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e6:Empleado {ID: "EMP021"})
+CREATE (e6)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e7:Empleado {ID: "EMP022"})
+CREATE (e7)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e8:Empleado {ID: "EMP023"})
+CREATE (e8)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e9:Empleado {ID: "EMP024"})
+CREATE (e9)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e10:Empleado {ID: "EMP025"})
+CREATE (e10)-[:trabajaEn]->(s);
+
+
+// Empleados de s3
+CREATE (e11:Empleado {ID: "EMP031", nombre: "Ana", apellido: "Vega", curp: "VEGANA820707HMX34", teléfono: "3132234567", numCuenta: "1122334455667788", tipo: "gerente", area: "Recursos Humanos"});
+CREATE (e12:Empleado {ID: "EMP032", nombre: "Ricardo", apellido: "Mendoza", curp: "MENRIC950923HMX56", teléfono: "3133345678", numCuenta: "9988776655443322", tipo: "desarrollador", especializacion: "data-science", lenguajePrin: "Python", proyectosActivos: "6"});
+CREATE (e13:Empleado {ID: "EMP033", nombre: "Laura", apellido: "Navarro", curp: "NAVLAU911231FMX78", teléfono: "3134456789", numCuenta: "7766554433221100", tipo: "soporte", area: "Infraestructura", contactInt: "6633"});
+CREATE (e14:Empleado {ID: "EMP034", nombre: "Andrés", apellido: "Gómez", curp: "GOMAND920418HMX89", teléfono: "3135567890", numCuenta: "5544332211887766", tipo: "gerente", area: "Operaciones"});
+CREATE (e15:Empleado {ID: "EMP035", nombre: "Valeria", apellido: "Soto", curp: "SOTVAL000101FMX12", teléfono: "3136678901", numCuenta: "4433221100778899", tipo: "desarrollador", especializacion: "mobile", lenguajePrin: "Kotlin", proyectosActivos: "3"});
+//Relacionando a s3
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e11:Empleado {ID: "EMP031"})
+CREATE (e11)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e12:Empleado {ID: "EMP032"})
+CREATE (e12)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e13:Empleado {ID: "EMP033"})
+CREATE (e13)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e14:Empleado {ID: "EMP034"})
+CREATE (e14)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e15:Empleado {ID: "EMP035"})
+CREATE (e15)-[:trabajaEn]->(s);
+
+
+// Empleados de s4
+CREATE (e16:Empleado {ID: "EMP041", nombre: "Diego", apellido: "Cruz", curp: "CRUDIE880412HMX01", teléfono: "3141234567", numCuenta: "3322114455667788", tipo: "gerente", area: "Marketing"});
+CREATE (e17:Empleado {ID: "EMP042", nombre: "Isabel", apellido: "Morales", curp: "MORISA900321FMX23", teléfono: "3142345678", numCuenta: "1122443355778899", tipo: "desarrollador", especializacion: "back-end", lenguajePrin: "Node.js", proyectosActivos: "4"});
+CREATE (e18:Empleado {ID: "EMP043", nombre: "Oscar", apellido: "Lara", curp: "LAROSC970728HMX45", teléfono: "3143456789", numCuenta: "9988776655221100", tipo: "soporte", area: "Servidores", contactInt: "7734"});
+CREATE (e19:Empleado {ID: "EMP044", nombre: "Patricia", apellido: "Romero", curp: "ROMPAT930112FMX67", teléfono: "3144567890", numCuenta: "7766443322110099", tipo: "gerente", area: "Administración"});
+CREATE (e20:Empleado {ID: "EMP045", nombre: "Eduardo", apellido: "Vargas", curp: "VARED840915HMX89", teléfono: "3145678901", numCuenta: "5544332200119988", tipo: "desarrollador", especializacion: "front-end", lenguajePrin: "React", proyectosActivos: "5"});
+//Relacionando a s4
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e16:Empleado {ID: "EMP041"})
+CREATE (e16)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e17:Empleado {ID: "EMP042"})
+CREATE (e17)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e18:Empleado {ID: "EMP043"})
+CREATE (e18)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e19:Empleado {ID: "EMP044"})
+CREATE (e19)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e20:Empleado {ID: "EMP045"})
+CREATE (e20)-[:trabajaEn]->(s);
+
+
+// Empleados de s5
+CREATE (e21:Empleado {ID: "EMP051", nombre: "María", apellido: "Hernández", curp: "HERMAR870109FMX12", teléfono: "3151234567", numCuenta: "6677889900112233", tipo: "gerente", area: "Ventas"});
+CREATE (e22:Empleado {ID: "EMP052", nombre: "Jorge", apellido: "Pineda", curp: "PINJOR890218HMX34", teléfono: "3152345678", numCuenta: "3344556677889900", tipo: "desarrollador", especializacion: "full-stack", lenguajePrin: "JavaScript", proyectosActivos: "6"});
+CREATE (e23:Empleado {ID: "EMP053", nombre: "Carmen", apellido: "Flores", curp: "FLOCAR950316FMX56", teléfono: "3153456789", numCuenta: "2233445566778899", tipo: "soporte", area: "Redes", contactInt: "8839"});
+CREATE (e24:Empleado {ID: "EMP054", nombre: "Luis", apellido: "Campos", curp: "CAMLUI900522HMX78", teléfono: "3154567890", numCuenta: "4455667788990011", tipo: "gerente", area: "Logística"});
+CREATE (e25:Empleado {ID: "EMP055", nombre: "Adriana", apellido: "Santos", curp: "SANADR850823FMX90", teléfono: "3155678901", numCuenta: "5566778899001122", tipo: "desarrollador", especializacion: "mobile", lenguajePrin: "Swift", proyectosActivos: "3"});
+//Relacionando empleados a s5
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e21:Empleado {ID: "EMP051"})
+CREATE (e21)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e22:Empleado {ID: "EMP052"})
+CREATE (e22)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e23:Empleado {ID: "EMP053"})
+CREATE (e23)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e24:Empleado {ID: "EMP054"})
+CREATE (e24)-[:trabajaEn]->(s);
+
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e25:Empleado {ID: "EMP055"})
+CREATE (e25)-[:trabajaEn]->(s);
+
+// Crear proyectos (asignados a sucursales gestionados por gerentes)
+// s1
+// Crear proyectos para la sucursal s1
+CREATE (p1:Proyecto {codigo: "P011", nombre: "Sistema ERP", descripcion: "Desarrollo de un sistema ERP", fechaInicio: date("2024-04-01"), fechaFin: date("2024-05-31"), presupuesto: 100000});
+MATCH (p1:Proyecto {codigo: "P011"})
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e1:Empleado {clave: "EMP011"})
+CREATE (p1)-[:asignadoA]->(s)
+CREATE (p1)-[:gestionadoPor]->(e1)
+CREATE (p2:Proyecto {codigo: "P012", nombre: "Optimización de Inventarios", descripcion: "Implementación de un sistema para optimizar la gestión de inventarios", fechaInicio: date("2024-06-01"), fechaFin: date("2024-08-31"), presupuesto: 250000});
+MATCH (p2:Proyecto {codigo: "P012"})
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e1:Empleado {clave: "EMP011"})
+CREATE (p2)-[:asignadoA]->(s)
+CREATE (p2)-[:gestionadoPor]->(e1)
+CREATE (p3:Proyecto {codigo: "P013", nombre: "Capacitación en Ventas", descripcion: "Programa de capacitación para el equipo de ventas", fechaInicio: date("2024-09-01"), fechaFin: date("2024-09-30"), presupuesto: 550000});
+MATCH (p3:Proyecto {codigo: "P013"})
+MATCH (s:Sucursal {clave: "S001"})
+MATCH (e4:Empleado {clave: "EMP014"})
+CREATE (p3)-[:asignadoA]->(s)
+CREATE (p3)-[:gestionadoPor]->(e4)
+
+// s2
+// Crear proyectos para la sucursal s2
+CREATE (p4:Proyecto {codigo: "P021", nombre: "Implementación de CRM", descripcion: "Desarrollo de un sistema de gestión de relaciones con clientes", fechaInicio: date("2024-07-01"), fechaFin: date("2024-10-31"), presupuesto: 820000});
+MATCH (p4:Proyecto {codigo: "P021"})
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e6:Empleado {clave: "EMP021"})
+CREATE (p4)-[:asignadoA]->(s)
+CREATE (p4)-[:gestionadoPor]->(e6)
+CREATE (p5:Proyecto {codigo: "P022", nombre: "Migración de Infraestructura", descripcion: "Migración de la infraestructura de TI a la nube", fechaInicio: date("2024-05-15"), fechaFin: date("2024-09-15"), presupuesto: 1000000});
+MATCH (p5:Proyecto {codigo: "P022"})
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e9:Empleado {clave: "EMP024"})
+CREATE (p5)-[:asignadoA]->(s)
+CREATE (p5)-[:gestionadoPor]->(e9)
+CREATE (p6:Proyecto {codigo: "P023", nombre: "Programa de Entrenamiento de Personal", descripcion: "Capacitación de habilidades técnicas y de gestión para empleados", fechaInicio: date("2024-08-01"), fechaFin: date("2024-10-01"), presupuesto: 850000});
+MATCH (p6:Proyecto {codigo: "P023"})
+MATCH (s:Sucursal {clave: "S002"})
+MATCH (e6:Empleado {clave: "EMP021"})
+CREATE (p6)-[:asignadoA]->(s)
+CREATE (p6)-[:gestionadoPor]->(e6)
+
+
+// s3
+// Crear proyectos para la sucursal s3
+CREATE (p7:Proyecto {codigo: "P031", nombre: "Automatización de Procesos", descripcion: "Implementación de soluciones para automatizar procesos internos", fechaInicio: date("2024-03-01"), fechaFin: date("2024-06-30"), presupuesto: 600000});
+MATCH (p7:Proyecto {codigo: "P031"})
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e11:Empleado {clave: "EMP031"})
+CREATE (p7)-[:asignadoA]->(s)
+CREATE (p7)-[:gestionadoPor]->(e11)
+CREATE (p8:Proyecto {codigo: "P032", nombre: "Sistema de Seguridad", descripcion: "Desarrollo de un sistema para mejorar la seguridad de los datos", fechaInicio: date("2024-05-01"), fechaFin: date("2024-08-31"), presupuesto: 110000});
+MATCH (p8:Proyecto {codigo: "P032"})
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e14:Empleado {clave: "EMP034"})
+CREATE (p8)-[:asignadoA]->(s)
+CREATE (p8)-[:gestionadoPor]->(e14)
+CREATE (p9:Proyecto {codigo: "P033", nombre: "Optimización de Recursos Humanos", descripcion: "Proyecto para optimizar los recursos humanos de la empresa", fechaInicio: date("2024-07-01"), fechaFin: date("2024-10-01"), presupuesto: 830000});
+MATCH (p9:Proyecto {codigo: "P033"})
+MATCH (s:Sucursal {clave: "S003"})
+MATCH (e11:Empleado {clave: "EMP031"})
+CREATE (p9)-[:asignadoA]->(s)
+CREATE (p9)-[:gestionadoPor]->(e11)
+
+// s4
+// Crear proyectos para la sucursal s4
+CREATE (p10:Proyecto {codigo: "P041", nombre: "Expansión de Mercado", descripcion: "Estrategia para la expansión en nuevos mercados regionales", fechaInicio: date("2024-02-01"), fechaFin: date("2024-06-30"), presupuesto: 450000});
+MATCH (p10:Proyecto {codigo: "P041"})
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e16:Empleado {clave: "EMP041"})
+CREATE (p10)-[:asignadoA]->(s)
+CREATE (p10)-[:gestionadoPor]->(e16)
+CREATE (p11:Proyecto {codigo: "P042", nombre: "Modernización de TI", descripcion: "Actualización de la infraestructura de TI para mejorar el rendimiento", fechaInicio: date("2024-04-01"), fechaFin: date("2024-08-31"), presupuesto: 165000});
+MATCH (p11:Proyecto {codigo: "P042"})
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e19:Empleado {clave: "EMP044"})
+CREATE (p11)-[:asignadoA]->(s)
+CREATE (p11)-[:gestionadoPor]->(e19)
+CREATE (p12:Proyecto {codigo: "P043", nombre: "Programa de Fidelización", descripcion: "Desarrollo de un programa de fidelización para clientes", fechaInicio: date("2024-09-01"), fechaFin: date("2024-12-15"), presupuesto: 700000});
+MATCH (p12:Proyecto {codigo: "P043"})
+MATCH (s:Sucursal {clave: "S004"})
+MATCH (e16:Empleado {clave: "EMP041"})
+CREATE (p12)-[:asignadoA]->(s)
+CREATE (p12)-[:gestionadoPor]->(e16)
+
+// s5
+// Crear proyectos para la sucursal s5
+CREATE (p13:Proyecto {codigo: "P051", nombre: "Implementación de Comercio Electrónico", descripcion: "Desarrollo de una plataforma de comercio electrónico", fechaInicio: date("2024-03-01"), fechaFin: date("2024-06-30"), presupuesto: 200000});
+MATCH (p13:Proyecto {codigo: "P051"})
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e21:Empleado {clave: "EMP051"})
+CREATE (p13)-[:asignadoA]->(s)
+CREATE (p13)-[:gestionadoPor]->(e21)
+CREATE (p14:Proyecto {codigo: "P052", nombre: "Optimización Logística", descripcion: "Proyecto para mejorar la logística de la empresa", fechaInicio: date("2024-07-01"), fechaFin: date("2024-11-30"), presupuesto: 180000});
+MATCH (p14:Proyecto {codigo: "P052"})
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e24:Empleado {clave: "EMP054"})
+CREATE (p14)-[:asignadoA]->(s)
+CREATE (p14)-[:gestionadoPor]->(e24)
+CREATE (p15:Proyecto {codigo: "P053", nombre: "Capacitación en Nuevas Tecnologías", descripcion: "Capacitación del equipo en tecnologías emergentes", fechaInicio: date("2024-05-01"), fechaFin: date("2024-07-31"), presupuesto: 500000});
+MATCH (p15:Proyecto {codigo: "P053"})
+MATCH (s:Sucursal {clave: "S005"})
+MATCH (e21:Empleado {clave: "EMP051"})
+CREATE (p15)-[:asignadoA]->(s)
+CREATE (p15)-[:gestionadoPor]->(e21)
+
+// Crear clientes
+CREATE (c1:Cliente {nombre: "Empresa X", empresa: "Empresa X S.A.", telefono: "123456789", correo: "contacto@empresa.com"});
+CREATE (c2:Cliente {nombre: "Distribuidora Y", empresa: "Distribuidora Y S.A.", teléfono: "987654321", correo: "info@distribuidoray.com"});
+CREATE (c3:Cliente {nombre: "Servicios Z", empresa: "Servicios Z S.A. de C.V.", teléfono: "456789123", correo: "contacto@serviciosz.com"});
+CREATE (c4:Cliente {nombre: "Consultora W", empresa: "Consultora W Ltd.", teléfono: "321654987", correo: "consultas@consultoraw.com"});
+CREATE (c5:Cliente {nombre: "Tecnología T", empresa: "Tecnología T S.A.P.I.", teléfono: "654123789", correo: "soporte@tecnologiat.com"});
+
+// Relacionar clientes con proyectos
+// Cliente 1 - Empresa X
+MATCH (c1:Cliente {nombre: "Empresa X"}), (p1:Proyecto {codigo: "P011"}), (p4:Proyecto {codigo: "P021"}), (p10:Proyecto {codigo: "P041"})
+CREATE (c1)-[:contrataP]->(p1)
+CREATE (c1)-[:contrataP]->(p4)
+CREATE (c1)-[:contrataP]->(p10)
+RETURN c1, p1, p4, p10
+
+// Cliente 2 - Distribuidora Y
+MATCH (c2:Cliente {nombre: "Distribuidora Y"}), (p2:Proyecto {codigo: "P012"}), (p5:Proyecto {codigo: "P022"}), (p11:Proyecto {codigo: "P042"})
+CREATE (c2)-[:contrataP]->(p2)
+CREATE (c2)-[:contrataP]->(p5)
+CREATE (c2)-[:contrataP]->(p11)
+RETURN c2, p2, p5, p11
+
+// Cliente 3 - Servicios Z
+MATCH (c3:Cliente {nombre: "Servicios Z"}), (p3:Proyecto {codigo: "P013"}), (p6:Proyecto {codigo: "P023"}), (p12:Proyecto {codigo: "P043"})
+CREATE (c3)-[:contrataP]->(p3)
+CREATE (c3)-[:contrataP]->(p6)
+CREATE (c3)-[:contrataP]->(p12)
+RETURN c3, p3, p6, p12
+
+// Cliente 4 - Consultora W
+MATCH (c4:Cliente {nombre: "Consultora W"}), (p7:Proyecto {codigo: "P031"}), (p8:Proyecto {codigo: "P032"}), (p14:Proyecto {codigo: "P052"})
+CREATE (c4)-[:contrataP]->(p7)
+CREATE (c4)-[:contrataP]->(p8)
+CREATE (c4)-[:contrataP]->(p14)
+RETURN c4, p7, p8, p14
+
+// Cliente 5 - Tecnología T
+MATCH (c5:Cliente {nombre: "Tecnología T"}), (p9:Proyecto {codigo: "P033"}), (p13:Proyecto {codigo: "P051"}), (p15:Proyecto {codigo: "P053"})
+CREATE (c5)-[:contrataP]->(p9)
+CREATE (c5)-[:contrataP]->(p13)
+CREATE (c5)-[:contrataP]->(p15)
+RETURN c5, p9, p13, p15
+
+
+// Crear reuniones
+CREATE (r1:Reunion {idRe: "R01", fecha: date("2024-10-01"), hora: time("10:00:00"), motivo: "Discusión sobre el proyecto ERP"});
+MATCH (e1:Empleado {ID: "EMP011"})
+MATCH (e2:Empleado {ID: "EMP012"})
+MATCH (e4:Empleado {ID: "EMP014"})
+MATCH (c1:Cliente {nombre: "Empresa X"})
+MATCH (s:Sucursal {clave: "S001"})
+CREATE (r1)-[:asisteEmpleado]->(e1)
+CREATE (r1)-[:asisteEmpleado]->(e2)
+CREATE (r1)-[:asisteEmpleado]->(e4)
+CREATE (r1)-[:conCliente]->(c1)
+CREATE (r1)-[:enSucursal]->(s)
+
+CREATE (r2:Reunion {idRe: "R02", fecha: date("2024-10-05"), hora: time("14:00:00"), motivo: "Revisión de avances en logística"});
+MATCH (e6:Empleado {ID: "EMP021"})
+MATCH (e9:Empleado {ID: "EMP024"})
+MATCH (c2:Cliente {nombre: "Distribuidora Y"})
+MATCH (s:Sucursal {clave: "S002"})
+CREATE (r2)-[:asisteEmpleado]->(e6)
+CREATE (r2)-[:asisteEmpleado]->(e9)
+CREATE (r2)-[:conCliente]->(c2)
+CREATE (r2)-[:enSucursal]->(s)
+
+CREATE (r3:Reunion {idRe: "R03", fecha: date("2024-10-10"), hora: time("09:00:00"), motivo: "Capacitación sobre nuevas tecnologías"});
+MATCH (e11:Empleado {ID: "EMP031"})
+MATCH (e14:Empleado {ID: "EMP034"})
+MATCH (c3:Cliente {nombre: "Servicios Z"})
+MATCH (s:Sucursal {clave: "S003"})
+CREATE (r3)-[:asisteEmpleado]->(e11)
+CREATE (r3)-[:asisteEmpleado]->(e14)
+CREATE (r3)-[:conCliente]->(c3)
+CREATE (r3)-[:enSucursal]->(s)
+
+CREATE (r4:Reunion {idRe: "R04", fecha: date("2024-10-15"), hora: time("11:30:00"), motivo: "Presentación de resultados del trimestre"});
+MATCH (e16:Empleado {ID: "EMP041"})
+MATCH (e19:Empleado {ID: "EMP044"})
+MATCH (c4:Cliente {nombre: "Consultora W"})
+MATCH (s:Sucursal {clave: "S004"})
+CREATE (r4)-[:asisteEmpleado]->(e16)
+CREATE (r4)-[:asisteEmpleado]->(e19)
+CREATE (r4)-[:conCliente]->(c4)
+CREATE (r4)-[:enSucursal]->(s)
+
+CREATE (r5:Reunion {idRe: "R05", fecha: date("2024-10-20"), hora: time("15:00:00"), motivo: "Evaluación de proyectos", asistentes: ["e21", "e24"], cliente: "Tecnología T", sucursal: "s5"});
+MATCH (e21:Empleado {ID: "EMP051"})
+MATCH (e24:Empleado {ID: "EMP054"})
+MATCH (c5:Cliente {nombre: "Tecnología T"})
+MATCH (s:Sucursal {clave: "S005"})
+CREATE (r5)-[:asisteEmpleado]->(e21)
+CREATE (r5)-[:asisteEmpleado]->(e24)
+CREATE (r5)-[:conCliente]->(c5)
+CREATE (r5)-[:enSucursal]->(s)
+
+// Crear visitas
+CREATE (v1:Visita {idVi: "V01", fecha: date("2024-10-02"), hora: time("10:30:00"), motivo: "Revisión de la implementación del ERP"});
+MATCH (c1:Cliente {nombre: "Empresa X"})
+MATCH (s:Sucursal {clave: "S001"})
+CREATE (v1)-[:visitaDe]->(c1)
+CREATE (v1)-[:enSucursal]->(s)
+
+CREATE (v2:Visita {idVi: "V02", fecha: date("2024-10-06"), hora: time("14:30:00"), motivo: "Inspección de procesos logísticos"});
+MATCH (c2:Cliente {nombre: "Distribuidora Y"})
+MATCH (s:Sucursal {clave: "S002"})
+CREATE (v2)-[:visitaDe]->(c2)
+CREATE (v2)-[:enSucursal]->(s)
+
+CREATE (v3:Visita {idVi: "V03", fecha: date("2024-10-11"), hora: time("09:30:00"), motivo: "Evaluación de soporte técnico"});
+MATCH (c3:Cliente {nombre: "Servicios Z"})
+MATCH (s:Sucursal {clave: "S003"})
+CREATE (v3)-[:visitaDe]->(c3)
+CREATE (v3)-[:enSucursal]->(s)
+
+CREATE (v4:Visita {idVi: "V04", fecha: date("2024-10-16"), hora: time("11:00:00"), motivo: "Revisión de indicadores de desempeño"});
+MATCH (c4:Cliente {nombre: "Consultora W"})
+MATCH (s:Sucursal {clave: "S004"})
+CREATE (v4)-[:visitaDe]->(c4)
+CREATE (v4)-[:enSucursal]->(s)
+
+CREATE (v5:Visita {idVi: "V05", fecha: date("2024-10-21"), hora: time("15:30:00"), cliente: "Tecnología T", motivo: "Presentación de propuestas"});
+MATCH (c4:Cliente {nombre: "Tecnología T"})
+MATCH (s:Sucursal {clave: "S005"})
+CREATE (v5)-[:visitaDe]->(c5)
+CREATE (v5)-[:enSucursal]->(s)
+
+----------------------------------------------------------------
+
+//RESOLUCION DE LOS QUERYS
+
+Q1. Obtener la lista de sucursales que tienen más de 5 empleados.
+
+RESPUESTA:
+MATCH (s:Sucursal)-[:trabajaEn]->(e:Empleado)
+WITH s, COUNT(e) AS numEmpleados
+WHERE numEmpleados > 5
+RETURN s
+
+Q2. Encontrar los gerentes que gestionan más de 3 proyectos simultáneamente.
+
+RESPUESTA:
+MATCH (e:Empleado {tipo: "gerente"})-[:gestionadoPor]->(p:Proyecto)
+WITH e, COUNT(p) AS numProyectos
+WHERE numProyectos > 3
+RETURN e
+
+Q3.  Obtener la lista de desarrolladores con especialización en back-end que están trabajando en más de 2 proyectos.
+
+RESPUESTA:
+MATCH (e:Empleado {especializacion: "back-end"})-[:trabajaEn]->(s:Sucursal)-[:asignadoA]->(p:Proyecto)
+WITH e, COUNT(p) AS numProyectos
+WHERE numProyectos > 2
+RETURN e
+
+Q4. Obtener la lista de proyectos que tienen un presupuesto mayor a $1,000,000.
+
+RESPUESTA:
+MATCH (p:Proyecto)
+WHERE p.presupuesto > 1000000
+RETURN p
+
+Q5. Listar los empleados de soporte técnico de todas las sucursales
+
+RESPUESTA:
+MATCH (e:Empleado {tipo: "soporte"})-[:trabajaEn]->(s:Sucursal)
+RETURN e, s
+
+Q6. Encontrar los proyectos que corresponden a un cliente en específico.
+
+RESPUESTA:
+MATCH (c:Cliente {nombre: "Nombre del Cliente"})-[:contrataP]->(p:Proyecto)
+RETURN p
+
+Q7. Obtener la lista de sucursales que han recibido visitas de más de 5 clientes diferentes.
+
+RESPUESTA:
+MATCH (s:Sucursal)<-[:enSucursal]-(v:Visita)-[:visitaDe]->(c:Cliente)
+WITH s, COUNT(DISTINCT c) AS numClientesDiferentes
+WHERE numClientesDiferentes > 5
+RETURN s
+
+Q8. Encontrar a los desarrolladores que han trabajado en proyectos con un presupuesto total mayor a $500,000.
+
+RESPUESTA:
+MATCH (e:Empleado {tipo: "desarrollador"})-[:trabajaEn]->(s:Sucursal)-[:asignadoA]->(p:Proyecto)
+WITH e, SUM(p.presupuesto) AS presupuestoTotal
+WHERE presupuestoTotal > 500000
+RETURN e
+
+Q9. Obtener la lista de clientes que han contratado más de 3 proyectos en diferentes sucursales.
+
+RESPUESTA:
+MATCH (c:Cliente)-[:contrataP]->(p:Proyecto)-[:asignadoA]->(s:Sucursal)
+WITH c, COUNT(DISTINCT s) AS sucursales
+WHERE sucursales > 3
+RETURN c.nombre AS nombre_cliente
+
+Q10. Encontrar las sucursales que tienen más de 5 desarrolladores especializados en full-stack.
+
+RESPUESTA:
+MATCH (s:Sucursal)<-[:trabajaEn]-(e:Empleado {especializacion: "full-stack", tipo: "desarrollador"})
+WITH s, COUNT(e) AS numDesarrolladores
+WHERE numDesarrolladores > 5
+RETURN s
+
+Q11. Transferir todos los empleados de soporte técnico de una sucursal en específico hacia otra sucursal.
+
+RESPUESTA:
+MATCH (s1:Sucursal {id: $idSucursalOrigen})
+MATCH (s2:Sucursal {id: $idSucursalDestino})
+MATCH (e:Empleado {tipo: "soporte"})-[:trabajaEn]->(s1)
+CREATE (e)-[:trabajaEn]->(s2)
+DELETE (e)-[:trabajaEn]->(s1)

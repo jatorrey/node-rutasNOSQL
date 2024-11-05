@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "5322a2c4-a253-43bb-bbe8-a736fa3bf1de",
+		"name": "Pruebas POSTMAN noSQL u2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39047919"
+	},
+	"item": [
+		{
+			"name": "Query 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/sucursal/q1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sucursal",
+						"q1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/empleado/q2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"empleado",
+						"q2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/empleado/q3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"empleado",
+						"q3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/proyecto/q4",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"proyecto",
+						"q4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/empleado/q5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"empleado",
+						"q5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "nombre=Empresa X",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/proyecto/q6",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"proyecto",
+						"q6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 7",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/sucursal/q7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sucursal",
+						"q7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 8",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/empleado/q8",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"empleado",
+						"q8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 9",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/cliente/q9",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cliente",
+						"q9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 10",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/sucursal/q10",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sucursal",
+						"q10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query 11",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idSucursalDestino\": \"S002\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/sucursal/q11/S001",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sucursal",
+						"q11",
+						"S001"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

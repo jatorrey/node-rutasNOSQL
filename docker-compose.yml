@@ -30,7 +30,7 @@ services:
 
   neo4j:
     image: neo4j
-    container_name: neo4j_Ges
+    container_name: neo4j01
     environment:
       - NEO4J_AUTH=none
     ports:

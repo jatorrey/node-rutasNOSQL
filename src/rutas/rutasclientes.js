@@ -5,7 +5,7 @@ const neo4j = require('neo4j-driver');
 const cache = require('./cache');  
 
 let driver = neo4j.driver(
-    'neo4j://neo4j_Ges:7687',
+    'neo4j://neo4j01:7687',
     neo4j.auth.basic('neo4j', 'neo4j')
 );
 

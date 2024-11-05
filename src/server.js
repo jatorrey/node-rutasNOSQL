@@ -20,3 +20,8 @@ app.use(bodyParser.json());
 
 app.use('/api', rutaPruebaMateria, rutaPruebaAlumno, rutaPruebaSucursal, rutaPruebaEmpleado, rutaPruebaProyecto, rutaPruebaCliente);
 app.listen(PORT, () => { console.log('Server en http://localhost:' + PORT) });
+
+process.on('uncaughtException', (err) => {
+    console.error('Error no capturado:', err);
+    // código que se ejecuta para manejar el error
+  });

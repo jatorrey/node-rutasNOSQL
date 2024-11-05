@@ -12,7 +12,7 @@ let driver = neo4j.driver(
 // Q2. Encontrar los gerentes que gestionan más de 3 proyectos simultáneamente.
 router.route('empleado/q2').all(cache).get(async (req, res) => {
     const session = driver.session();
-    await session.run('MATCH (e:Empleado {tipo: "gerente"})-[:gestionadoPor]->(p:Proyecto) WITH e, COUNT(p) AS numProyectos WHERE numProyectos > 3 RETURN e')
+    await session.run('MATCH (e:Empleado {tipo: "gerente"})-[:gestionadoPor]->(p:Proyecto) WITH e, COUNT(p) AS numProyectos WHERE numProyectos > 2 RETURN e')
         .then(result => {
             empleado = result.records.map(record => {
                 return record.get('e').properties;
